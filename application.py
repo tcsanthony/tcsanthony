@@ -39,7 +39,7 @@ def product():
 @app.route("/search/<username>")
 # Scrape profiles in the background
 def igsearch(username):
-    user = requests.get('http://0.0.0.0:80/search/'+username)
+    user = requests.get('http://127.0.0.1:5000/search/'+username)
     user = user.json()['username']
     return redirect(url_for('questionnaire',username= username))
     # return render_template('result.html', user=user)
@@ -56,7 +56,7 @@ def questionnaire1(username):
     if form.validate_on_submit():
         # Post form data TO server
         dictToSend = {"question1":form.answer.data}
-        res = requests.post('http://0.0.0.0:80/questionnaire/answer', json=dictToSend)
+        res = requests.post('http://127.0.0.1:5000/questionnaire/answer', json=dictToSend)
         # Read POSTED data FROM server
         dictFromServer = res.json()
         print(dictFromServer)
@@ -78,7 +78,7 @@ def questionnaire2(username):
             answer = form.high.label.text
         # Post form data TO server
         dictToSend = {"question2":answer}
-        res = requests.post('http://0.0.0.0:80/questionnaire/answer', json=dictToSend)
+        res = requests.post('http://127.0.0.1:5000/questionnaire/answer', json=dictToSend)
         # Read POSTED data FROM server
         dictFromServer = res.json()
         print(dictFromServer)
@@ -100,7 +100,7 @@ def questionnaire3(username):
             answer = form.idc.label.text
         # Post form data TO server
         dictToSend = {"question3":answer}
-        res = requests.post('http://0.0.0.0:80/questionnaire/answer', json=dictToSend)
+        res = requests.post('http://127.0.0.1:5000/questionnaire/answer', json=dictToSend)
         # Read POSTED data FROM server
         dictFromServer = res.json()
         print(dictFromServer)
@@ -130,4 +130,4 @@ def contact():
     return render_template('contact.html')
 
 if __name__ == '__main__':
-   app.run(host="0.0.0.0", debug=True, port=80)
+   app.run(debug=True, port=80)
