@@ -20,4 +20,4 @@ api.add_resource(Igsearch, '/search/<username>')
 api.add_resource(Questionnaire, '/questionnaire/answer')
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run()
